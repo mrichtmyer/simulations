@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Enrollment Simulator</h1>
+    <p class="lead">This is a Monte Carlo based simulator to estimate clinical trial subject enrollment.</p>
+  </div>
+</div>
+
+<!-- <div id="plot"></div>
+<script src="static/plot.js"></script> -->
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<div id='plotly_graph' align=center></div>
+<script type='text/javascript'>
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('plotly_graph',graphs,{});
+</script>
+
+<!-- Grid for histograms -->
+<h2>Estimates at end of study</h2>
+<br>
+<div class="row row-cols-3 g-4">
+  <div class="col">
+    <div class="card" id='pre_screened_card'>
+
+      <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+      <div id='pre_screened_card'></div>
+      <script type='text/javascript'>
+          var graphs = {{ pre_screen_hist | safe }};
+          Plotly.plot('pre_screened_card',graphs,{});
+      </script>
+
+      <div class="card-body .h-100">
+        <h5 class="card-title">Pre-Screen</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class="card" id='screen_pass_card'>
+      <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+      <div id='screen_pass_card'></div>
+      <script type='text/javascript'>
+          var graphs = {{ screen_pass_hist | safe }};
+          Plotly.plot('screen_pass_card',graphs,{});
+      </script>
+
+      <div class="card-body .h-100">
+        <h5 class="card-title">Screen Pass</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col">
+    <div class="card">
+      <div id='screen_fail_card'></div>
+      <script type='text/javascript'>
+          var graphs = {{ screen_fail_hist | safe }};
+          Plotly.plot('screen_fail_card',graphs,{});
+      </script>
+
+      <div class="card-body .h-100">
+        <h5 class="card-title">Screen Fail</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div id='complete_card'></div>
+      <script type='text/javascript'>
+          var graphs = {{ complete_hist | safe }};
+          Plotly.plot('complete_card',graphs,{});
+      </script>
+      <div class="card-body .h-100">
+        <h5 class="card-title">Complete</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <div id='discontinue_card'></div>
+      <script type='text/javascript'>
+          var graphs = {{ discontinue_hist | safe }};
+          Plotly.plot('discontinue_card',graphs,{});
+      </script>
+      <div class="card-body .h-100">
+        <h5 class="card-title">Discontinued</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
