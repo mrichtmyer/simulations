@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Enrollment Simulator</h1>
+    <p class="lead">This is a Monte Carlo based simulator to estimate clinical trial subject enrollment.</p>
+  </div>
+</div>
+
+<!-- <div id="plot"></div>
+<script src="static/plot.js"></script> -->
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<div id='plotly_graph'></div>
+<script type='text/javascript'>
+    var graphs = {{ graphJSON | safe }};
+    Plotly.plot('plotly_graph',graphs,{});
+  </script>
+
+{% endblock %}
